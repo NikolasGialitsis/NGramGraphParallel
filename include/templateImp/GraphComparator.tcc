@@ -95,31 +95,37 @@ double GraphComparator<PayloadType, AtomType>::calculateContainmentSimilarity(Pr
 {
     unsigned int numberOfEdges1 = pGraph1.numberOfEdges();
     unsigned int numberOfEdges2 = pGraph2.numberOfEdges();
-    double cs;
+    double sim;
     double VR = calculateValueRatio(pGraph1, pGraph2);
-    if(option == "CS" || option =="sqrtCS"){
+    if(option == "VS" || option =="sqrtVS"){
         unsigned int bigGraphEdges = std::max(numberOfEdges1, numberOfEdges2);
-        cs = VR / bigGraphEdges;
-        if(option == "sqrtCS"){
-            return 1-sqrt(2-2*cs);
+        sim = VR / bigGraphEdges;
+        if(option == "sqrtVS"){
+            return 1-sqrt(2-2*sim);
         }
         else{
-            return cs;
+            return sim;
         }
         
     }
-    else if(option == "MinCS" || option =="sqrtMinCS" || option=="TriGenMinCS"){
+    else if(option == "MinVS" || option =="sqrtMinVS" || option=="TriGenMinVS"){
         unsigned int smallGraphEdges = std::min(numberOfEdges1, numberOfEdges2);
-        cs = VR / smallGraphEdges;
-        if(option == "sqrtMinCS"){
-            return 1-sqrt(2-2*cs);
+        sim = VR / smallGraphEdges;
+        if(option == "sqrtMinVS"){
+            return 1-sqrt(2-2*sim);
         }
-        else if(option == "MinCS"){
-            return cs;
+        else if(option == "MinVS"){
+            return sim;
         }
-        else if(option == "TriGenMinCS"){
-             return 1-pow(1-cs,46);
+        else if(option == "TriGenMinVS"){
+             return 1-pow(1-sim,46);
         }
+    }
+    else if (option=="SS"){
+	unsigned int smallGraphEdges = std::min(numberOfEdges1, numberOfEdges2);
+	unsigned int bigGraphEdges = std::max(numberOfEdges1, numberOfEdges2);
+	sim = static_cast<double>(smallGraphEdges) / bigGraphEdges;
+	return sim;
     }
     else{
         assert(false && "Unsupported Containment Similarity Option");
