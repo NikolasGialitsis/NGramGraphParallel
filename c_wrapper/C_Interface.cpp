@@ -33,6 +33,9 @@ void ngg_construct(int text_id, const char* text){
 		NGramGraphCache.reserve(1); 
 		NGramGraphCache.push_back(NGG);
 	}
+
+
+//	NGG.printGraphvizToFile(std::to_string(text_id)+".dot");
 }
 
 
@@ -57,7 +60,7 @@ void print_state (const std::ios& stream) {
 }
 
 DistMat* decerialize(const char* binfile, int overwrite=0){
-
+	std::cout<<"decerealize"<<std::endl;
 	if(precomputedDistanceMatrix && precomputedDistanceMatrix->distances) {
 		if(overwrite){
 			free(precomputedDistanceMatrix->distances);
@@ -114,13 +117,13 @@ double get_precomputed_distance_if_exists(int first_text_id, int second_text_id)
 double ngg_dissimilarity(int first_text_id, int second_text_id){
 	
 	GraphComparator<std::string, std::string> comparator;
-	double cs = 
+	double sim = 
 		comparator.calculateContainmentSimilarity(
 			NGramGraphCache.at(first_text_id),
 			NGramGraphCache.at(second_text_id),
-			"TriGenMinCS"
+			"VS"
 		);
-	return 1 - cs;
+	return 1 - sim;
 	
 }
 
