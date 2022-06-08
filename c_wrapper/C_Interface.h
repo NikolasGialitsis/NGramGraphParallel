@@ -8,7 +8,11 @@ extern "C" {
 // static const char* objects_storage_file = "/home/ngialitsis/search/dmat/dmat_20news_raw_n5_w5_cs.bin";
 // static const char* objects_storage_file = "/home/ngialitsis/search/dmat/dmat_20news_raw_n5_w5_mincs.bin";
 //static const char* objects_storage_file = "/home/ngialitsis/search/dmat/dmat_20news_raw_n5_w5_sqrt_cs.bin";
+<<<<<<< HEAD
 static const char* objects_storage_file = "/storage4/ngialitsis_home/search/dmat/dmat_20news_raw_n5_w5_vs.bin";
+=======
+static const char* objects_storage_file = "/home/ngialitsis/search/dmat/dmat_20news_raw_n5_w5_trigen_cs.bin";
+>>>>>>> 27e07b8badb110bc0ddd5591e3b5e0e47f1b3ae8
 
 // static const char* objects_storage_file = "/home/ngialitsis/search/dmat/dmat_20news_raw_n5_w5_mincs.bin";
 

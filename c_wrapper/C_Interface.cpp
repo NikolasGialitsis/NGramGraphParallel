@@ -33,9 +33,14 @@ void ngg_construct(int text_id, const char* text){
 		NGramGraphCache.reserve(1); 
 		NGramGraphCache.push_back(NGG);
 	}
+<<<<<<< HEAD
 
 
 //	NGG.printGraphvizToFile(std::to_string(text_id)+".dot");
+=======
+	// NGG.printGraphvizToFile(std::to_string(text_id)+".dot");
+	
+>>>>>>> 27e07b8badb110bc0ddd5591e3b5e0e47f1b3ae8
 }
 
 
@@ -121,7 +126,11 @@ double ngg_dissimilarity(int first_text_id, int second_text_id){
 		comparator.calculateContainmentSimilarity(
 			NGramGraphCache.at(first_text_id),
 			NGramGraphCache.at(second_text_id),
+<<<<<<< HEAD
 			"VS"
+=======
+			"TriGenVS"
+>>>>>>> 27e07b8badb110bc0ddd5591e3b5e0e47f1b3ae8
 		);
 	return 1 - sim;
 	

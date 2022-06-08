@@ -50,6 +50,7 @@ double GraphComparator<PayloadType, AtomType>::calculateValueRatio(ProximityGrap
 	    weight1 = pair.second;
 	    weight2 = bigGraph.getEdgeWeightByName(name);
 	    if (weight2 > 0) {
+            // std::cout<<name<<":"<<weight1<<" - " << weight2<<std::endl;
 	       	sum += minMaxRatio(weight1, weight2);
 	    }
 	}
@@ -95,6 +96,7 @@ double GraphComparator<PayloadType, AtomType>::calculateContainmentSimilarity(Pr
 {
     unsigned int numberOfEdges1 = pGraph1.numberOfEdges();
     unsigned int numberOfEdges2 = pGraph2.numberOfEdges();
+<<<<<<< HEAD
     double sim;
     double VR = calculateValueRatio(pGraph1, pGraph2);
     if(option == "VS" || option =="sqrtVS"){
@@ -105,11 +107,27 @@ double GraphComparator<PayloadType, AtomType>::calculateContainmentSimilarity(Pr
         }
         else{
             return sim;
+=======
+    double vs;
+    double VR = calculateValueRatio(pGraph1, pGraph2);
+    if(option == "VS" || option =="sqrtVS" || option == "TriGenVS"){
+        unsigned int bigGraphEdges = std::max(numberOfEdges1, numberOfEdges2);
+        vs = VR / bigGraphEdges;
+        if(option == "sqrtVS"){
+            return 1-sqrt(2-2*vs);
+        }
+        else if(option == "VS"){
+            return vs;
+        }
+        else if(option == "TriGenVS"){
+             return 1-pow(1-vs,62);
+>>>>>>> 27e07b8badb110bc0ddd5591e3b5e0e47f1b3ae8
         }
         
     }
     else if(option == "MinVS" || option =="sqrtMinVS" || option=="TriGenMinVS"){
         unsigned int smallGraphEdges = std::min(numberOfEdges1, numberOfEdges2);
+<<<<<<< HEAD
         sim = VR / smallGraphEdges;
         if(option == "sqrtMinVS"){
             return 1-sqrt(2-2*sim);
@@ -119,6 +137,17 @@ double GraphComparator<PayloadType, AtomType>::calculateContainmentSimilarity(Pr
         }
         else if(option == "TriGenMinVS"){
              return 1-pow(1-sim,46);
+=======
+        vs = VR / smallGraphEdges;
+        if(option == "sqrtMinVS"){
+            return 1-sqrt(2-2*vs);
+        }
+        else if(option == "MinVS"){
+            return vs;
+        }
+        else if(option == "TriGenMinVS"){
+             return 1-pow(1-vs,62);
+>>>>>>> 27e07b8badb110bc0ddd5591e3b5e0e47f1b3ae8
         }
     }
     else if (option=="SS"){
